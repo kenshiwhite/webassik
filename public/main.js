@@ -33,6 +33,8 @@ function updateWeatherInfo(weatherData) {
             <p>Country Code: ${country}</p>
             <p>Rain Volume (last 3 hours): ${rainVolume} mm</p>
         `;
+
+        initMap(weatherData.name, weatherData.coord.lat, weatherData.coord.lon);
     } else {
         weatherInfoElement.innerHTML = 'Failed to fetch weather data.';
     }
@@ -48,4 +50,19 @@ function search() {
             console.error('Error:', error);
             updateWeatherInfo(null);
         });
+}
+
+function initMap(city, lat, lon) {
+    const cityName = city;
+
+    const map = L.map('map').setView([lat, lon], 10);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup(cityName)
+        .openPopup();
 }
