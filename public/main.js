@@ -8,6 +8,25 @@ async function fetchWeatherData(cityName) {
     }
 }
 
+async function fetchPopulation(cityName) {
+    try {
+        const response = await axios.get(`/population`, {params: {cityName}});
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching population data:', error);
+        return null;
+    }
+}
+async function fetchFact() {
+    try {
+        const response = await axios.get(`/fact`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching fact:', error);
+        return null;
+    }
+}
+
 function updateWeatherInfo(weatherData) {
     const weatherInfoElement = document.getElementById('weather-info');
 
@@ -40,9 +59,31 @@ function updateWeatherInfo(weatherData) {
     }
 }
 
-function search() {
+function updatePopulationInfo(data) {
+    const populationElement = document.getElementById('population');
+
+    if (data) {
+        populationElement.innerHTML = `
+            <p><strong>Population:</strong> ${data.population} people</p>
+        `
+    }
+
+}
+
+function updateFactInfo(data) {
+    const factElement = document.getElementById('fact');
+
+    if (data) {
+        factElement.innerHTML = `
+            <p><strong>Fact of the day:</strong> ${data.fact}</p>
+        `
+    }
+
+}
+
+async function search() {
     const city = document.querySelector('#city').value;
-    fetchWeatherData(city)
+    await fetchWeatherData(city)
         .then((weatherData) => {
             updateWeatherInfo(weatherData);
         })
@@ -50,6 +91,25 @@ function search() {
             console.error('Error:', error);
             updateWeatherInfo(null);
         });
+
+    fetchPopulation(city)
+        .then((populationData) => {
+            updatePopulationInfo(populationData)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            updatePopulationInfo(null);
+        });
+
+    fetchFact()
+        .then((data) => {
+            updateFactInfo(data)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            updateFactInfo(null);
+        });
+
 }
 
 function initMap(city, lat, lon) {

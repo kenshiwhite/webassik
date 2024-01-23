@@ -14,8 +14,13 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             background-color: #f8f8f8;
+        }
+
+        .container {
+            margin: 0 auto;
             max-width: 860px;
         }
+
 
         input {
             width: 70%;
@@ -39,7 +44,13 @@
             background-color: #45a049;
         }
 
-        #weather-info {
+        .info-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        #weather-info, #population, #fact {
+            width: 30%;
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ddd;
@@ -60,11 +71,20 @@
 </head>
 <body>
 
-<div>
+<div class="container">
     <input id="city" type="text">
-    <button onclick="search()">Get weather info</button>
+    <button onclick="search()">Get info</button>
 
-    <div id="weather-info">
+    <div class="info-container">
+        <div id="weather-info">
+        </div>
+
+
+        <div id="population">
+        </div>
+
+        <div id="fact">
+        </div>
     </div>
 
     <div id="map" style="height: 300px;"></div>
