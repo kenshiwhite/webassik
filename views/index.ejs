@@ -21,7 +21,6 @@
             max-width: 860px;
         }
 
-
         input {
             width: 70%;
             padding: 10px;
@@ -77,19 +76,31 @@
 
     <div class="info-container">
         <div id="weather-info">
+            <% if (weatherData) { %>
+            <p>Temperature: <%= weatherData.main.temp %> F</p>
+            <p>Description: <%= weatherData.weather[0].description %></p>
+            <!-- Add the rest of the dynamic content here -->
+            <% } else { %>
+            <p>Failed to fetch weather data.</p>
+            <% } %>
         </div>
 
-
         <div id="population">
+            <% if (populationData) { %>
+            <p><strong>Population:</strong> <%= populationData.population %> people</p>
+            <% } %>
         </div>
 
         <div id="fact">
+            <% if (factData) { %>
+            <p><strong>Fact of the day:</strong> <%= factData.fact %></p>
+            <% } %>
         </div>
     </div>
 
     <div id="map" style="height: 300px;"></div>
 </div>
 
-<script src="main.js"></script>
+<script src="../public/main.js"></script>
 </body>
 </html>
