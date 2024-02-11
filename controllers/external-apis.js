@@ -35,21 +35,4 @@ const getCityPopulation = async (req, res) => {
     }
 }
 
-const getRandomFact = async (_, res) => {
-    try {
-        const apiUrl = `https://api.api-ninjas.com/v1/facts?limit=1`;
-        const response = await axios.get(apiUrl, {
-            headers: {
-                'X-Api-Key': 'GtZNuWgkB1bJn4kjXYVWmQ==xRl5srEeKmlP9QEq'
-            }
-        });
-        const data = response.data[0];
-
-        res.json(data);
-    } catch (error) {
-        console.error('Error fetching fact:', error);
-        res.status(500).send('Internal Server Error');
-    }
-}
-
-module.exports = {getDataFromOpenWeather, getCityPopulation, getRandomFact}
+module.exports = {getDataFromOpenWeather, getCityPopulation}

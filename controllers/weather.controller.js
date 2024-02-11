@@ -26,17 +26,6 @@ const search = async (req, res) => {
     }
 }
 
-const getInitialData = async (req, res) => {
-    const {username} = req.session;
-
-    console.log("Session: ", username);
-
-    const savedWeatherData = await WeatherData.find({username});
-
-    res.render('main', {username, savedWeatherData});
-}
-
 module.exports = {
     search,
-    getInitialData
 }
