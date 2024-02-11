@@ -3,6 +3,11 @@ const axios = require("axios");
 
 
 const getWeatherPage = async (req, res) => {
+    if (!req.session.username) {
+        res.redirect('/login');
+        return;
+    }
+
     const {username} = req.session;
 
     const savedWeatherData = new Map();
@@ -24,7 +29,12 @@ const getWeatherPage = async (req, res) => {
 }
 
 
-const getFactPage = async (_, res) => {
+const getFactPage = async (req, res) => {
+    if (!req.session.username) {
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const apiUrl = `https://api.api-ninjas.com/v1/facts?limit=10`;
         const response = await axios.get(apiUrl, {
@@ -42,7 +52,12 @@ const getFactPage = async (_, res) => {
     }
 }
 
-const getHolidaysPage = async (_, res) => {
+const getHolidaysPage = async (req, res) => {
+    if (!req.session.username) {
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const apiUrl = `https://api.api-ninjas.com/v1/holidays?country=KZ&year=2024&type=public_holiday`;
         const response = await axios.get(apiUrl, {
@@ -60,6 +75,11 @@ const getHolidaysPage = async (_, res) => {
 }
 
 const getAdminPage = async (req, res) => {
+    if (!req.session.username) {
+        res.redirect('/login');
+        return;
+    }
+
     console.log(req.session);
     if (!req.session.isAdmin) {
         res.status(403).send('You do not have Admin permissions');
