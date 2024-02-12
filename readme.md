@@ -5,7 +5,7 @@
 - https://yernur-weather-app.onrender.com/register
 - https://yernur-weather-app.onrender.com/login
 - https://yernur-weather-app.onrender.com/main
-- https://yernur-weather-app.onrender.com/admin
+- https://yernur-weather-app.onrender.com/admin (login: admin, password: admin)
 
 
 ## Made By Duisenbek Ernur
