@@ -80,6 +80,17 @@
             padding: 0;
             margin: 0;
         }
+        .holiday-saved{
+            margin: 10px 0;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
         .holiday-card {
             margin: 10px 0;
@@ -130,9 +141,16 @@
     </nav>
 </header>
 
-<h2>Holidays in KZ</h2>
+<h2>Holidays in Countries by country code</h2>
+<form id="countryForm" action="/holidays" method="GET">
+    <label for="country">Enter Country Name:</label>
+    <input type="text" id="country" name="country" required>
+    <button type="submit">Get Holidays</button>
+</form>
+
 <ul>
     <% holidays.forEach(data => { %>
+        
         <li class="mb-3 holiday-card">
             <div class="holiday-details">
                 <p class="holiday-name">
@@ -145,9 +163,23 @@
         </li>
     <% }); %>
 </ul>
+<h2>Searched Country codes</h2>
+
+
+<ul>
+         
+    <% searchedCountries.forEach(country => { %>
+        <div class="holiday-saved">
+            <li class="mb-3">
+                <%= country %>
+            </li>
+        </div>
+    <% }); %>
+
+</ul>
 
 <footer class="bg-dark text-white">
-    &copy; Duisenbek Ernur, SE-2206
+    &copy; Yessimkhan Azamat, SE-2230
 </footer>
 
 </body>

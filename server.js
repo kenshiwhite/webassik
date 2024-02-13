@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 const {login, register, deleteUser, updateUser, createUser} = require('./controllers/user.controller')
 const {search} = require("./controllers/weather.controller");
 const {getWeatherPage, getHolidaysPage, getFactPage, getAdminPage} = require("./controllers/pages");
+const {getCityPopulation } = require('./controllers/external-apis');
+
 
 const app = express();
-const port = 3060;
+const port = 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,6 +30,14 @@ app.get('/main', getWeatherPage);
 app.get('/fact', getFactPage);
 app.get('/holidays', getHolidaysPage);
 app.get('/admin', getAdminPage);
+app.get('/CityPopulation', getCityPopulation)
+
+app.get('/getCityPopulation', getCityPopulation);
+
+
+app.get('/population', async (req, res) => {
+    res.render('CityPopulation');
+});
 app.get('/login', (req, res) => {
     res.render('login');
 });
@@ -37,6 +47,7 @@ app.get('/register', (req, res) => {
 app.get('/', (req, res) => {
     res.redirect('/login');
 })
+
 
 
 app.listen(port, () => {

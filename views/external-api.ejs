@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Importing controller code -->
+    <script src="../controllers/external-apis.js"></script>
+
+    <title>City Population</title>
+</head>
+<body>
+
+    <form action="/population" method="post">
+        <div class="form-group">
+            <label for="city" class="font-weight-bold">City:</label>
+            <input type="text" id="city" name="city" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Search City</button>
+    </form>
+    
+    <h2 class="mt-4">Saved City Data:</h2>
+    <ul>
+        <% savedWeatherData.forEach(data => { %>
+            <li class="mb-3">
+                <%= data.city %> - <%= data.temperature %>°C, <%= data.description %>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
