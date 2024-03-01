@@ -1,9 +1,12 @@
 const {User} = require("../models/mongo");
+const bcrypt = require('bcrypt');
 
 const login = async (req, res) => {
     const {username, password} = req.body;
 
-    const user = await User.findOne({username, password});
+    const user = await User.findOne({username});
+
+    console.log(user)
 
     if (user) {
         req.session.username = user.username;
@@ -17,6 +20,11 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
     const {username, password} = req.body;
+
+    if(await User.findOne({username})) {
+        res.json('This Username already exist')
+        return
+    }
 
     await User.create({username, password, isAdmin: false, createdAt: new Date(), updatedAt: new Date()});
 

@@ -4,266 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
-
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        header {
-            background-color: #007BFF;
-            width: 100%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
+        header{
+            color: aliceblue;
             background-color: #343a40;
-            padding: 10px 0;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-        }
-
-        h2 {
-            margin-top: 20px;
-            color: #343a40;
-        }
-
-        table {
-            width: 80%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .edit-actions {
-            display: flex;
-            align-items: center;
-        }
-
-        .edit-input {
-            margin-right: 10px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .checkbox-label {
-            margin-right: 10px;
-            font-weight: 600;
-        }
-
-        .edit-btn {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .delete-btn {
-            background-color: #dc3545;
-            color: #fff;
-            border: none;
-            margin-left: 15px;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #343a40;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: auto;
-            width: 100%;
-        }
-
-
-        .add-user-btn {
-            margin-top: 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .form-checkbox {
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-
-        .form-buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .form-btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .add-btn {
-            background-color: #28a745;
-            color: #fff;
-            margin-right: 10px;
-        }
-
-        .close-btn {
-            background-color: #dc3545;
-            color: #fff;
         }
     </style>
+    <link rel="stylesheet" href="styles.css"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <nav>
-        <a href="/main" class="text-white">Main</a>
-        <a href="/fact" class="text-white">Facts</a>
-        <a href="/holidays" class="text-white">Holidays</a>
-    </nav>
-</header>
+    <header>
+        <h1>Admins page</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a href="/main" class="navbar-brand"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/main">Main</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/holidays">Holidays</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Log out</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/population">City population</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/weather">Weathers Configuration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/items">Items Configuration</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
-<h2>Users Table</h2>
-
-<button class="add-user-btn" onclick="showAddUserModal()">Add User</button>
-
-<table>
-    <thead>
-    <tr>
-        <th>Username</th>
-        <th>isAdmin</th>
-        <th>Created Date</th>
-        <th>Last Updated Date</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% users.forEach(user => { %>
-        <tr>
-            <td><%= user.username %></td>
-            <td><%= user.isAdmin ? 'Yes' : 'No' %></td>
-            <td><%= new Date(user.updatedAt).toLocaleDateString() %></td>
-            <td><%= new Date(user.updatedAt).toLocaleDateString() %></td>
-            <td class="edit-actions">
-                <input id="<%= 'username-' + user._id %>" class="edit-input" type="text"
-                       placeholder="New Username">
-                <input id="<%= 'password-' + user._id %>" class="edit-input" type="password" placeholder="New Password">
-                <label class="checkbox-label">
-                    <input id="<%= 'isAdmin-' + user._id %>" type="checkbox" class="edit-checkbox"> isAdmin
-                </label>
-                <button class="edit-btn" onclick="updateUser('<%= user._id %>')">Update</button>
-                <button class="delete-btn" onclick="deleteUser('<%= user._id %>')">Delete</button>
-            </td>
-        </tr>
-    <% }); %>
-    </tbody>
-</table>
-
-<footer class="bg-dark text-white">
-    &copy; Yessimkhan Azamat, SE-2230
-</footer>
-
-<div id="addUserModal" class="modal">
-    <div class="modal-content">
-        <h2>Add New User</h2>
-        <label for="newUsername" class="form-label">Username:</label>
-        <input type="text" id="newUsername" class="form-input" placeholder="Enter username">
-
-        <label for="newPassword" class="form-label">Password:</label>
-        <input type="password" id="newPassword" class="form-input" placeholder="Enter password">
-
-        <label for="isAdminCheckbox" class="form-checkbox">
-            <input type="checkbox" id="isAdminCheckbox"> isAdmin
-        </label>
-
-        <div class="form-buttons">
-            <button class="form-btn add-btn" oncpermilick="addUser()">Add User</button>
-            <button class="form-btn close-btn" onclick="closeAddUserModal()">Close</button>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <h1>Users Table</h1>
+        <button class="btn btn-primary" onclick="showAddUserModal()">Add User</button>
+    
+        <div id="users-table" class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>isAdmin</th>
+                        <th>Created Date</th>
+                        <th>Last Updated Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.username %></td>
+                            <td><%= user.password %></td>
+                            <td><%= user.isAdmin ? 'Yes' : 'No' %></td>
+                            <td><%= new Date(user.createdAt).toLocaleDateString() %></td>
+                            <td><%= new Date(user.updatedAt).toLocaleDateString() %></td>
+                            <td class="edit-actions">
+                                <input id="<%= 'username-' + user._id %>" class="edit-input form-control" type="text" placeholder="New Username">
+                                <input id="<%= 'password-' + user._id %>" class="edit-input form-control" type="password" placeholder="New Password">
+                                <div class="form-check">
+                                    <input id="<%= 'isAdmin-' + user._id %>" type="checkbox" class="edit-checkbox form-check-input"> 
+                                    <label class="form-check-label" for="<%= 'isAdmin-' + user._id %>">isAdmin</label>
+                                </div>
+                                <button class="btn btn-primary edit-btn" onclick="updateUser('<%= user._id %>')">Update</button>
+                                <button class="btn btn-danger delete-btn" onclick="deleteUser('<%= user._id %>')">Delete</button>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
         </div>
-    </div>
-</div>
+    </main>
+    
+    <footer class="mt-auto py-3">
+        &copy; Yessimkhan Azamat, SE-2230
+    </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script> 
 <script>
     async function updateUser(userId) {
         const username = document.querySelector('#username-' + userId).value
@@ -296,7 +129,6 @@
         }
     }
 
-
     function showAddUserModal() {
         const modal = document.getElementById('addUserModal');
         modal.style.display = 'flex';
@@ -306,7 +138,6 @@
         const modal = document.getElementById('addUserModal');
         modal.style.display = 'none';
     }
-
 
     async function addUser() {
         const newUsername = document.getElementById('newUsername').value;
@@ -343,5 +174,16 @@
         }
     }
 </script>
+
+<div id="google_translate_element"></div>
+
+    <script>
+        function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>

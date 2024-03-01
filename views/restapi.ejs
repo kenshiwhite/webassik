@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country CRUD</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, button {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+    <h1>Country CRUD</h1>
+    <h2>Add Country</h2>
+    <form id="addCountryForm">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="text" id="capital" placeholder="Capital" required>
+      <input type="text" id="currency" placeholder="Currency" required>
+      <input type="text" id="language" placeholder="Language" required>
+      <input type="number" id="population" placeholder="Population" required>
+      <input type="number" id="area" placeholder="Area" required>
+      <button type="submit">Add Country</button>
+    </form>
+  
+    <h2>Country List</h2>
+    <ul id="countryList">
+      <% countries.forEach(country => { %>
+        <li><%= country.name %> - <%= country.capital %></li>
+      <% }); %>
+    </ul>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const addCountryForm = document.getElementById('addCountryForm');
+      const countryList = document.getElementById('countryList');
+  
+      addCountryForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        const formData = new FormData(addCountryForm);
+        const countryData = Object.fromEntries(formData.entries());
+  
+        try {
+          const response = await fetch('/countries', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(countryData)
+          });
+          const data = await response.json();
+  
+          // Clear form inputs
+          addCountryForm.reset();
+  
+          // Append new country to the list
+          const countryItem = document.createElement('li');
+          countryItem.textContent = `${data.name} - ${data.capital}`;
+          countryList.appendChild(countryItem);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      });
+    });
+    </script>
+</body>
+</html>

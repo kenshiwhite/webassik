@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Page</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="/main" class="nav-link">Main</a>
+            <a href="/holidays" class="nav-link">Holidays</a>
+            <a href="/login" class="nav-link">Log out</a>
+            <a href="/population" class="nav-link">City population</a>
+            <a href="/admin" class="nav-link">Users</a>
+            <a href="/admin/weather" class="nav-link">Weather</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <h1>Item Data</h1>
+    <button class="btn btn-primary" onclick="showAddItemModal()">Add Item</button>
+
+    <div id="item-table" class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Last Updated Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Display item data fetched from the backend -->
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><%= item.picture %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.description %></td>
+                        <td><%= new Date(item.updatedAt).toLocaleDateString() %></td>
+                        <td class="edit-actions">
+                            <input id="<%= 'picture-' + item._id %>" class="edit-input form-control" type="text" placeholder="New Picture">
+                            <input id="<%= 'name-' + item._id %>" class="edit-input form-control" type="text" placeholder="New Name">
+                            <input id="<%= 'description-' + item._id %>" class="edit-input form-control" type="text" placeholder="New Description">
+                            <button class="btn btn-primary edit-btn" onclick="updateItem('<%= item._id %>')">Update</button>
+                            <button class="btn btn-danger delete-btn" onclick="deleteItem('<%= item._id %>')">Delete</button>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="mt-auto py-3">
+    &copy; Yessimkhan Azamat, SE-2230
+</footer>
+
+<div id="addItemModal" class="modal">
+    <div class="modal-content">
+        <h2>Add Item Data</h2>
+        <label for="newPicture" class="form-label">Picture:</label>
+        <input type="text" id="newPicture" class="form-input" placeholder="Enter picture">
+
+        <label for="newName" class="form-label">Name:</label>
+        <input type="text" id="newName" class="form-input" placeholder="Enter name">
+
+        <label for="newDescription" class="form-label">Description:</label>
+        <input type="text" id="newDescription" class="form-input" placeholder="Enter description">
+
+        <div class="form-buttons">
+            <button class="form-btn add-btn" onclick="addItem()">Add Item</button>
+            <button class="form-btn close-btn" onclick="closeAddItemModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function showAddItemModal() {
+        const modal = document.getElementById('addItemModal');
+        modal.style.display = 'flex';
+    }
+
+    function closeAddItemModal() {
+        const modal = document.getElementById('addItemModal');
+        modal.style.display = 'none';
+    }
+
+    async function addItem() {
+        const picture = document.getElementById('newPicture').value;
+        const name = document.getElementById('newName').value;
+        const description = document.getElementById('newDescription').value;
+
+        const newItem = {
+            picture,
+            name,
+            description
+        };
+
+        try {
+            const response = await fetch('/items/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newItem),
+            });
+
+            const data = await response.json();
+            console.log(data)
+
+            if (data.success) {
+                console.log('Item added successfully');
+                window.location.reload();
+            } else {
+                console.error('Failed to add item:', data.error);
+            }
+            closeAddItemModal();
+        } catch (error) {
+            console.error('Error:', error);
+            closeAddItemModal();
+        }
+    }
+
+    async function updateItem(itemId) {
+        const picture = document.querySelector('#picture-' + itemId).value;
+        const name = document.querySelector('#name-' + itemId).value;
+        const description = document.querySelector('#description-' + itemId).value;
+
+        console.log(picture, name, description)
+        const body = {
+            picture,
+            name,
+            description
+        };
+
+        try {
+            const response = await fetch('/items/' + itemId, {
+                method: 'PUT',
+                body: JSON.stringify(body),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const data = await response.json();
+        
+            if (data.success) {
+                window.location.reload();
+            } else {
+                console.error('Failed to update item:', data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function deleteItem(itemId) {
+        try {
+            const response = await fetch('/items/' + itemId, { method: 'DELETE' });
+            const data = await response.json();
+            if (data.success) {
+                window.location.reload();
+            } else {
+                console.error('Failed to delete item:', data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+</script>
+
+<div id="google_translate_element"></div>
+
+<script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

@@ -1,3 +1,37 @@
+//main.js
+
+
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const time = new Date().toLocaleString();
+const quizRoutes = require('./routes/quizRoutes');
+
+
+
+const app = express();
+// MongoDB Atlas connection
+mongoose.connect('mongodb://<username>:<password>@<cluster-url>/<database>', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+// Routes
+app.use('/quiz', quizRoutes);
+
+
+
+
+
+
+
+
 async function fetchWeatherData(cityName) {
     try {
         const response = await axios.get(`/weather`, {params: {cityName}});
@@ -17,6 +51,7 @@ async function fetchPopulation(cityName) {
         return null;
     }
 }
+/*
 async function fetchFact() {
     try {
         const response = await axios.get(`/fact`);
@@ -26,7 +61,7 @@ async function fetchFact() {
         return null;
     }
 }
-
+*/
 function updateWeatherInfo(weatherData) {
     const weatherInfoElement = document.getElementById('weather-info');
 
@@ -69,7 +104,7 @@ function updatePopulationInfo(data) {
     }
 
 }
-
+/*
 function updateFactInfo(data) {
     const factElement = document.getElementById('fact');
 
@@ -80,7 +115,7 @@ function updateFactInfo(data) {
     }
 
 }
-
+*/
 async function search() {
     const city = document.querySelector('#city').value;
     await fetchWeatherData(city)
@@ -100,7 +135,7 @@ async function search() {
             console.error('Error:', error);
             updatePopulationInfo(null);
         });
-
+    /*
     fetchFact()
         .then((data) => {
             updateFactInfo(data)
@@ -109,7 +144,7 @@ async function search() {
             console.error('Error:', error);
             updateFactInfo(null);
         });
-
+        */
 }
 
 function initMap(city, lat, lon) {

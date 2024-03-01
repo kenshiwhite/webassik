@@ -1,4 +1,12 @@
+//external-apis.js
+
 const axios = require("axios");
+const WeatherData = require('../models/mongo')
+
+// external-apis.js
+
+const { PopulationData } = require('../models/mongo'); // Import PopulationData model
+
 
 const getDataFromOpenWeather = async (req, res) => {
     try {
@@ -8,6 +16,8 @@ const getDataFromOpenWeather = async (req, res) => {
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
         const response = await axios.get(apiUrl);
         const weatherData = response.data;
+        
+        
 
         res.json(weatherData);
     } catch (error) {
@@ -15,22 +25,21 @@ const getDataFromOpenWeather = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }
-
 const getCityPopulation = async (req, res) => {
     try {
-        const {cityName} = req.query;
+        const { cityName } = req.query;
 
         const apiUrl = `https://api.api-ninjas.com/v1/city?name=${cityName}`;
         const response = await axios.get(apiUrl, {
             headers: {
-                'X-Api-Key': 'GtZNuWgkB1bJn4kjXYVWmQ==xRl5srEeKmlP9QEq'
+                'X-Api-Key': 'wAUTmHO20xERiz+2kQ/6Ag==iME6ilorrLIikkT0'
             }
         });
         const data = response.data[0];
-
+        
         res.json(data);
     } catch (error) {
-        console.error('Error fetching fact:', error);
+        console.error('Error fetching population data:', error);
         res.status(500).send('Internal Server Error');
     }
 }

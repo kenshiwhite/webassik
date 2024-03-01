@@ -1,0 +1,30 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Country Quiz</h1>
+        <div id="quiz">
+            <!-- Render quiz questions using EJS -->
+            <% quizData.forEach((quiz, index) => { %>
+                <div class="question">
+                    <p><%= index + 1 %>. <%= quiz.question %></p>
+                    <ul class="options">
+                        <% quiz.options.forEach(option => { %>
+                            <li><%= option %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            <% }); %>
+        </div>
+        <button id="submit">Submit</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
