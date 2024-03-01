@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
-    picture: String,
+    picture1: String,
+    picture2: String,
+    picture3: String,
     name: String,
     description: String,
     createdAt: { type: Date, default: Date.now },

@@ -4,9 +4,11 @@ const Item = require('../models/item');
 
 router.post('/items/create', async (req, res) => {
     try {
-        const { picture, name, description } = req.body;
+        const { picture1,picture2,picture3, name, description } = req.body;
         const newItem = await Item.create({
-            picture,
+            picture1,
+            picture2,
+            picture3,
             name,
             description
         });
@@ -40,10 +42,12 @@ router.get('/items/:id', async (req, res) => {
 
 router.put('/items/:id', async (req, res) => {
     try {
-        const { picture, name, description } = req.body;
+        const { picture1,picture2,picture3, name, description } = req.body;
         const updatedItem = await Item.findByIdAndUpdate(req.params.id,
             {
-                picture,
+                picture1,
+                picture2,
+                picture3,
                 name,
                 description,
                 updatedAt: new Date()
