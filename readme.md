@@ -1,11 +1,15 @@
-#work done bt Yessimkhan Azamat
+#Project Name:
 
-https://yessimkhan.onrender.com/login
+Project for Assignment 4 on Backend Development
 
-#account with admin status:
-#username: adminnpm
-#password: admin
-# test text 1
 
-#in holidays of countries page you need to search by country codes(Kazakhstan=KZ(default value) , Afghanistan=AF , Uzbekistan = UZ)
-#in page facts there is a some facts about different countries and more
+#Description
+The topic of the project was "Countries". 2 APIs and REST API was developed for this topic.On the admin page with admin permissions you can CRUD users, weather info and REST API posts.
+
+##ADMIN PAGE:
+      LOGIN: admin
+      PASSWORD: admin
+#server running on https://yessimkhan.onrender.com
+
+to run on localhost: 
+``` node server.js ```
