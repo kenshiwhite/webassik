@@ -9,10 +9,16 @@
     <style>
         /* Custom styles */
         body {
-            background-color: #343a40;
+            background-image: url(https://catherineasquithgallery.com/uploads/posts/2021-02/1614285784_64-p-chernii-fon-raznii-fon-71.jpg); /* Dark background */
             color: #fff;
             padding: 20px;
         }
+        #historyListContainer {
+            background-color: lightgray; /* Set your desired background color */
+            padding: 10px; /* Optional: Add padding for spacing */
+            color: #0d1117;
+        }
+
         .container {
             max-width: 500px;
             margin: auto;
@@ -92,7 +98,9 @@
 
     <div id="searchHistory">
         <h3>Search History</h3>
-        <ul id="historyList"></ul>
+        <div id="historyListContainer">   
+            <ul id="historyList"></ul>
+        </div>    
     </div>
 </div>
 
