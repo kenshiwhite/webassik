@@ -77,6 +77,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/admin">Users</a>
                         </li>
+                        
+                        <div id="google_translate_element"></div>
+
+                        <script>
+                            function googleTranslateElementInit() {
+                                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+                            }
+                        </script>
+
                     </ul>
                 </div>
             </div>
@@ -230,14 +239,6 @@
         } catch (error) {
             console.error('Error:', error);
         }
-    }
-</script>
-
-<div id="google_translate_element"></div>
-
-<script>
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
     }
 </script>
 
