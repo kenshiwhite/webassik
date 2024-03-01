@@ -6,7 +6,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const time = new Date().toLocaleString();
-const quizRoutes = require('./routes/quizRoutes');
 
 
 
@@ -19,13 +18,6 @@ mongoose.connect('mongodb://<username>:<password>@<cluster-url>/<database>', {
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-
-// Routes
-app.use('/quiz', quizRoutes);
-
-
 
 
 
